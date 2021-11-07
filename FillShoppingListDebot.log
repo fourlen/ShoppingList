@@ -1,0 +1,17 @@
+Config: default
+Input arguments:
+     tvc: FillShoppingListDebot.tvc
+      wc: None
+    keys: FillShoppingListDebot.keys.json
+init_data: None
+is_update_tvc: None
+
+Seed phrase: "board beef round doctor envelope submit sentence fury apple marble present ranch"
+Raw address: 0:e10b22bcc8eaab8918f134943c9e3fcc90b981f5109cbfdc31bb6510a51ca627
+testnet:
+Non-bounceable address (for init): 0QDhCyK8yOqriRjxNJQ8nj_MkLmB9RCcv9wxu2UQpRymJzji
+Bounceable address (for later access): kQDhCyK8yOqriRjxNJQ8nj_MkLmB9RCcv9wxu2UQpRymJ2Un
+mainnet:
+Non-bounceable address (for init): UQDhCyK8yOqriRjxNJQ8nj_MkLmB9RCcv9wxu2UQpRymJ4No
+Bounceable address (for later access): EQDhCyK8yOqriRjxNJQ8nj_MkLmB9RCcv9wxu2UQpRymJ96t
+Succeeded

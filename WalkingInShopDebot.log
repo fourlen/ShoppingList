@@ -1,0 +1,17 @@
+Config: default
+Input arguments:
+     tvc: WalkingInShopDebot.tvc
+      wc: None
+    keys: WalkingInShopDebot.keys.json
+init_data: None
+is_update_tvc: None
+
+Seed phrase: "just tower quit theory start garlic guess shrimp sight gas enact blouse"
+Raw address: 0:40b617cca4f6aca9a5868c64e4b4d8582952fa87b21205fefa65f87890649099
+testnet:
+Non-bounceable address (for init): 0QBAthfMpPasqaWGjGTktNhYKVL6h7ISBf76Zfh4kGSQmQLc
+Bounceable address (for later access): kQBAthfMpPasqaWGjGTktNhYKVL6h7ISBf76Zfh4kGSQmV8Z
+mainnet:
+Non-bounceable address (for init): UQBAthfMpPasqaWGjGTktNhYKVL6h7ISBf76Zfh4kGSQmblW
+Bounceable address (for later access): EQBAthfMpPasqaWGjGTktNhYKVL6h7ISBf76Zfh4kGSQmeST
+Succeeded

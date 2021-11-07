@@ -1,0 +1,8 @@
+Config: default
+Input arguments:
+     tvc: FillShoppingList.tvc
+      wc: None
+    keys: FillShoppingList.keys.json
+init_data: None
+is_update_tvc: None
+Error: failed to read smart contract file: Не удается найти указанный файл. (os error 2)
