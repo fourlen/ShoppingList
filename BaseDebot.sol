@@ -43,6 +43,7 @@ contract BaseDebot is InitialListDebot  {
                 ));
             }
         }
+        _menu();
     }
 
     function removePurchase() public {

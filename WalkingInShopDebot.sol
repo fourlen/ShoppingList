@@ -34,7 +34,7 @@ contract WalkingInShopDebot is BaseDebot {
     function payForPurchase_(string value) public {
         (uint _id, bool status) = stoi(value);
         id = _id;
-        Terminal.input(tvm.functionId(payForPurchase__), "Input quantity: ", false);
+        Terminal.input(tvm.functionId(payForPurchase__), "Input price: ", false);
     }
 
     function payForPurchase__(string value) public {

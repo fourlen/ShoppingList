@@ -108,7 +108,7 @@
 		{
 			"name": "checkAccountType",
 			"inputs": [
-				{"name":"accType","type":"int8"}
+				{"name":"acc_type","type":"int8"}
 			],
 			"outputs": [
 			]

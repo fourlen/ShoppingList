@@ -6,6 +6,7 @@ pragma AbiHeader pubkey;
 
 
 import "base/Debot.sol";
+import "base/ConfirmInput.sol";
 import "base/Sdk.sol";
 import "base/Terminal.sol";
 import "base/Upgradable.sol";
@@ -17,8 +18,9 @@ import "TransactableInterface.sol";
 
 
 abstract contract InitialListDebot is Debot, Upgradable {
+
     TvmCell stateInit;
-    // TvmCell listCode;
+    bytes m_icon;
     uint pubKey;
     address contractAddress;
     address userWalletAddress;
@@ -31,17 +33,26 @@ abstract contract InitialListDebot is Debot, Upgradable {
     function getDebotInfo() public functionID(0xDEB) override view returns(
         string name, string version, string publisher, string key, string author,
         address support, string hello, string language, string dabi, bytes icon
-    ) {}
+    ) {
+        name = "ShoppingListDeBot";
+        version = "0.2.0";
+        publisher = "Oborin Nikita";
+        key = "ShoppingList manager";
+        author = "Oborin Nikita";
+        hello = "Hi, I'm a ShoppingList Debot";
+        language = "en";
+        dabi = m_debotAbi.get();
+        icon = m_icon;
+    }
 
     function getRequiredInterfaces() public view override returns (uint256[] interfaces) {
-        return [ Terminal.ID, Menu.ID, AddressInput.ID ];
+        return [ Terminal.ID, Menu.ID, AddressInput.ID, ConfirmInput.ID ];
     }
 
 
     function setListCode(TvmCell code, TvmCell data) public {
         require(msg.pubkey() == tvm.pubkey(), 101);
         tvm.accept();
-        // listCode = code;
         stateInit = tvm.buildStateInit(code, data);
     }
 
@@ -49,8 +60,10 @@ abstract contract InitialListDebot is Debot, Upgradable {
         (uint resault, bool status) = stoi("0x" + value);
         if (status) {
             pubKey = resault;
+            Terminal.print(0, "Checking if you already have a Shopping list ...");
             TvmCell deployState = tvm.insertPubkey(stateInit, pubKey);
             contractAddress = address.makeAddrStd(0, tvm.hash(deployState));
+            Terminal.print(0, format( "Info: your ShoppingList contract address is {}", contractAddress));
             Sdk.getAccountType(tvm.functionId(checkAccountType), contractAddress);
         }
         else {
@@ -58,24 +71,19 @@ abstract contract InitialListDebot is Debot, Upgradable {
         }
     }
 
-    function checkAccountType(int8 accType) public {
-        if (accType == -1) {
+    function checkAccountType(int8 acc_type) public {
+        if (acc_type == -1) {
             Terminal.print(0, "You don't shopping list yet. Contract with initial balance of 0.2 tokens will be deployed.");
             AddressInput.get(tvm.functionId(creditAccount), "Select a wallet for payment.");
         }
-        else if (accType == 0) {
+        else if (acc_type == 0) {
             Terminal.print(0, "Deploying...");
             deploy();
         }
-        else if (accType == 1) {
+        else if (acc_type == 1) {
             _getStat(tvm.functionId(setStat));
-            Terminal.print(0,
-            format("You have {}/{}/{} (paid, unpaid, total) purchases.",
-            stat.paidPurchases,
-            stat.unpaidPurchases,
-            stat.paidPurchases + stat.unpaidPurchases));
         }
-        else if (accType == 2) {
+        else if (acc_type == 2) {
             Terminal.print(0, format("Error: account {} is frozen", contractAddress));
         }
     }
